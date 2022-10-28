@@ -21,16 +21,17 @@ docker run --name main \
   -e POSTGRES_DB=main \
   -p 5432:5432 \
   -d \
+  --net=host \
   postgres:14
 ```
 
 Build and run the application:
 
 ```shell
-./gradlew build
+./gradlew clean build
 docker build -t template-service:0.0.0-development .
 docker image tag template-service:0.0.0-development template-service:latest
-docker run -p 8080:8080 template-service:0.0.0-development
+docker run -p 8080:8080 --net=host template-service:0.0.0-development
 ```
 
 ## Building and deploying on Google Cloud Run from the local machine
@@ -38,7 +39,7 @@ docker run -p 8080:8080 template-service:0.0.0-development
 ### Building Docker image
 
 ```shell
-./gradlew build
+./gradlew clean build
 docker build -t {Docker repository}/template-service:0.0.0-development .
 docker image tag {Docker repository}/template-service:0.0.0-development {Docker repository}/template-service:latest
 docker image push --all-tags {Docker repository}/template-service

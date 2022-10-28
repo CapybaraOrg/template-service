@@ -30,7 +30,7 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v3.6.0
         with:
-          java-version: 17.0.5
+          java-version: 17
           distribution: corretto
       - name: Build and Test
         run: ./gradlew clean build

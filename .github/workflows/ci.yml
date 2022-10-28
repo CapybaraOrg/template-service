@@ -7,7 +7,7 @@ on:
         description: Git Ref (Optional)
         required: false
   push:
-    branches: [main]
+    branches: [ main ]
 
 defaults:
   run:
@@ -32,5 +32,14 @@ jobs:
         with:
           java-version: 17
           distribution: corretto
+      - name: Run local PostgreSQL
+        run: |
+          docker run --name main \
+            -e POSTGRES_USER=main  \
+            -e POSTGRES_PASSWORD=mysecretpassword \
+            -e POSTGRES_DB=main \
+            -p 5432:5432 \
+            -d \
+            postgres:14
       - name: Build and Test
         run: ./gradlew clean build

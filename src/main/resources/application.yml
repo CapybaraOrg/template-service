@@ -1,2 +1,8 @@
 server:
   port: ${PORT:8080}
+
+spring:
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/main}
+    username: ${DATASOURCE_USERNAME:main}
+    password: ${DATASOURCE_PASSWORD:mysecretpassword}
